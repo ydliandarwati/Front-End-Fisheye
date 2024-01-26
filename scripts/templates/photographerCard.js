@@ -1,9 +1,14 @@
-export function photographerTemplate(data) {
-    // brief way to do data.name, data.city, ....
-    const { id, name, portrait, city, country, tagline, price } = data;
+export class photographerCard {
 
-    const picture = `assets/photographers/${portrait}`;
-    function getUserCardDOM() {
+    constructor(photographer) {
+		this._photographer = photographer;
+	}
+
+    createPhotographerCard() {
+        // brief way to do data.name, data.city, ....
+        const { id, name, portrait, city, country, tagline, price } = this._photographer;
+
+        const picture = `assets/photographers/${portrait}`;
         // create article and its elements (img, name, country, ...)
 
         // create anchor element for photographer link with img
@@ -35,5 +40,4 @@ export function photographerTemplate(data) {
         article.appendChild(priceElement);
         return (article);
     }
-    return { name, picture, getUserCardDOM }
 }

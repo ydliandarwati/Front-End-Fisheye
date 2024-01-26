@@ -1,31 +1,21 @@
-    import { photographerTemplate } from "../templates/photographer.js" 
-    
-    // requête sur le fichier JSON en utilisant "fetch"
-    async function getPhotographers() {
-        const response = await fetch("./data/photographers.json");
-        const data = await response.json();
-        // data has two dictionaries: photographers & media
-        return { photographers: data.photographers }
-    }
+    import { photographerCard } from "../templates/photographerCard.js" 
+    import { PhotographersApi } from "../api/api.js";
 
-    // requête for putting data into html
-    async function displayData(photographers) {
+
+    async function showPhotographersCards() {
+        // Récupère les datas des photographes
+        const PhotographersApiClass = new PhotographersApi("./data/photographers.json")
+        const photographers = await PhotographersApiClass.getPhotographers();
+
         const photographersSection = document.querySelector(".photographer_section");
-
-        // loop over photographer list
-        photographers.forEach((photographer) => {
-            const photographerModel = photographerTemplate(photographer);
-            const userCardDOM = photographerModel.getUserCardDOM();
-            photographersSection.appendChild(userCardDOM);
+        // loop over photographer list and requête for putting data into html
+        photographers.forEach((entry) => {
+            const cardClass = new photographerCard(entry);
+            const photographer_card = cardClass.createPhotographerCard();
+            photographersSection.appendChild(photographer_card); //appendchild add to html
         });
     }
-
-    async function init() {
-        // Récupère les datas des photographes
-        const { photographers } = await getPhotographers();
-        displayData(photographers);
-    }
     
-    // initiate list of photographers
-    init();
+    // show list of all photographers cards
+    showPhotographersCards();
     

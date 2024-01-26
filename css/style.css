@@ -48,3 +48,22 @@ h1 {
     height: 200px;
     width: 200px;
 }
+
+.media_section{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 70px;
+    margin-top: 200px;
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+.photograph-header img {
+    height: 200px;
+    width: 200px;
+}
+
+.media_section img {
+    height: 200px;
+    width: 200px;
+}
