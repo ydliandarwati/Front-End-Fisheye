@@ -1,7 +1,7 @@
-// API script with two extended classes to read two dictionaries (photographer and media)
-// We also have one parent class of API
+// API script which plays the role of connecting to data source (json/url)
+// also with search by id functionalities
 
-class Api {
+export class Api {
     // takes the url (address) and read the json
 	constructor(url) {
 		this._url = url;
@@ -14,26 +14,44 @@ class Api {
 			.then((res) => eval(data))
 			.catch((err) => console.log("An error occured in reading the data!", err));
 	}
-}
 
-// class to handle photographer dictionary
-export class PhotographersApi extends Api {
-	constructor(url) {
-		super(url);
-	}
 	// method to get photographers data
 	async getPhotographers() {
-		return await this.get("res.photographers");
+		return fetch(this._url)
+		.then((res) => res.json())  
+		.then((res) => res.photographers)
+		.catch((err) => console.log("An error occured in reading the data!", err));
 	}
-}
 
-// class to handle media dictionary
-export class MediasApi extends Api {
-	constructor(url) {
-		super(url);
-	}
 	// method to get medias
 	async getMedias() {
-		return await this.get("res.media");
+		return fetch(this._url)
+		.then((res) => res.json())  
+		.then((res) => res.media)
+		.catch((err) => console.log("An error occured in reading the data!", err));
 	}
+
+	// method to get requested photographer (by id)
+	async getPhotographerById (id) {
+		return fetch(this._url)
+		.then(res => res.json())
+		.then(res => res.photographers.filter(entry => entry.id == id)[0])
+		.catch((err) => console.log("An error occured in reading the data!", err));
+
+	  }
+	
+	  // method to get requested media (by id)
+	  async getMeidasById (id) {
+		return fetch(this._url)
+		  .then(res => res.json())
+		  .then(res => res.media.filter(entry => entry.photographerId == id))
+		  .catch((err) => console.log("An error occured in reading the data!", err));
+	  }
+
+	  async getMeidasByMediaId (id) {
+		return fetch(this._url)
+		  .then(res => res.json())
+		  .then(res => res.media.filter(entry => entry.id == id))
+		  .catch((err) => console.log("An error occured in reading the data!", err));
+	  }
 }

@@ -6,6 +6,10 @@
     background-color: #FAFAFA;
     height: 300px;
     margin: 0 100px;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .contact_button {
@@ -74,3 +78,97 @@ form input {
     border: none;
     border-radius: 5px;
 }
+
+
+.media_section{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 70px;
+    margin-top: 200px;
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+/* .photograph-header img {
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+} */
+
+
+.filter {
+    margin: 10rem;
+}
+
+.photographer_name1 {
+    color: #D3573C;
+    font-size: 64px;
+    font-weight: 400;
+}
+
+.photographer_location1 {
+    color: #901C1C;
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.photographer_tagline1 {
+    color: #525252;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.media_thumbnail {
+    width: 350px;
+    height: 300px;
+    object-fit: cover;
+}
+
+.media_title {
+    color: #901C1C;
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.media_likes_counter {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.media_card {
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+
+}
+
+.card_title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+
+.media_likes {
+    display: flex;
+    flex-direction: row;
+    gap: 2px;
+}
+.like-btn {
+    font-size: 25px;
+    cursor: pointer;
+  }
+  
+.like-btn input[type=checkbox]:checked ~ .like-unselected {
+    display: none;
+  }
+
+  .like-btn input[type=checkbox]:checked ~ .like-selected {
+    display: inline-block; 
+    background: red;
+    background-clip: text;
+    color: transparent;
+  } 
+.like-btn input[type=checkbox], .like-btn .like-selected {
+    display: none;
+  }

@@ -1,46 +1,84 @@
-import { photographerCard } from "../templates/photographerCard.js" 
-import { mediaCard } from "../templates/mediaCard.js" 
-import { PhotographersApi, MediasApi } from "../api/api.js";
+import { Api } from "../api/api.js";
+import { PhotographerTemplate } from "../templates/photographerTemplate.js";
+import { Photographer } from "../models/photographer.js";
+import { MediaTemplate } from "../templates/mediaTemplate.js";
+import { Video, Picture } from '../models/media.js'
 
-const searchParams = new URLSearchParams(window.location.search);
-const photographer_id = searchParams.get('id'); 
+const data = await new Api("./data/photographers.json")
+
+async function init () {      
+	const photographersSection = document.querySelector(".photograph-header");
+    const mediaSection = document.querySelector(".media_section");
+
+    const listMedia = [];
+
+    const searchParams = new URLSearchParams(window.location.search);
+    const photographer_id = searchParams.get('id');  
+
+    // find photogapher and its media, based on id in query string
+    const photographerData = await data.getPhotographerById(photographer_id);
+    const mediaData = await data.getMeidasById(photographer_id);
+
+    const photographer = new Photographer(photographerData);
+    const photographerTemplate = new PhotographerTemplate(photographer);
+    photographersSection.appendChild(photographerTemplate.createPhotographerShortCard());
 
 
-async function displayPhotographerById (id) {       
-        const PhotographersApiClass = new PhotographersApi("./data/photographers.json")
-        const photographers = await PhotographersApiClass.getPhotographers();
+	// add video/photo to the list
+	mediaData.forEach((entry) => {
+        if (entry.image) {
+        	listMedia.push(new Picture(entry))
+        } else if (entry.video) {
+        	listMedia.push(new Video(entry))
+        }
+    });	
+	
+    photographer.portfolio = listMedia;
 
-        // find photogapher based on id in query string
-        const photographer = photographers.filter(entry => entry.id == id)[0];
-        
-        const photographersSection = document.querySelector(".photograph-header");
-        const cardClass = new photographerCard(photographer);
+	photographer.portfolio.forEach(media => {
+        const mediaTemplate = new MediaTemplate(photographer, media)
+        mediaSection.appendChild(mediaTemplate.createMediaCard())
+	})
 
-        //make card photographer
-        const photographer_card = cardClass.createPhotographerCard();
-        photographersSection.appendChild(photographer_card); //appendchild add to html
+	const likeBtns = document.querySelectorAll('input[type=checkbox]');
+	likeBtns.forEach(btn => btn.addEventListener("click", (e) => update_likes(e)));
+
 }
-89
-
-async function displayMedia (id) {
-
-    //to grab the section that we want to use
-    const photographersSection = document.querySelector(".media_section");
-
-    const MediaApiClass = new MediasApi("./data/photographers.json")
-    const media = await MediaApiClass.getMedias();
-
-    const mediaById = media.filter(entry => entry.photographerId == id);
-
-    mediaById.forEach((entry) => {
-        const cardClass = new mediaCard(entry);
-        const media_card = cardClass.createMediaCard();
-        photographersSection.appendChild(media_card); 
-
-    });
-}
 
 
-displayPhotographerById(photographer_id);
-displayMedia(photographer_id)
+function update_likes(e) {
+	const likedMedia = data.getMeidasByMediaId(e.target.id)
+    console.log(likedMedia)
+	const getLikes = async () => {
+		const a = await likedMedia;
+		console.log(a[0].likes);
+	}	
+
+	getLikes();
+
+	// Promise
+    // .then(({ data }) => data)
+    // .then(data => doSomethingWithData(data))// rest of script
+	// const likeBtns = document.querySelectorAll('input[type=checkbox]');
+	// const likedMedia = data.getMeidasByMediaId(likeBtns[0].id)
+	// console.log(likedMedia)
+	// likeBtns.forEach((btn) => btn.addEventListener("click", (e) => {
+	// 	if (e.target.checked) {
+	// 		var mediaLikes = data.getMeidasByMediaId(btn.id);
+	// 		console.log(mediaLikes)
+	// 	} else {
+	// 	  console.log("ppp")
+	// 	}
+	// }));
+	// 	this.$wrapperCard.querySelector('label.favorite__counter').innerHTML = this._media.likes
+	// 	this.$wrapperCard.querySelector('input.favorite__input').setAttribute('aria-label', `${this._media.likes} j'aime`)
+  
+	// 	// Rafraichie le le ContentPhotographerLink
+	// 	this._photographer.templatePhotographer.refreshPhotographerContentLink()
+	//   })
+	// console.log(bntLike)
+	};
+
+init();
+// await ();
 
