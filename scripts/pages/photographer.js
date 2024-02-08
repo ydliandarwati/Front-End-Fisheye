@@ -1,84 +1,65 @@
 import { Api } from "../api/api.js";
-import { PhotographerTemplate } from "../templates/photographerTemplate.js";
+import { MediaCard} from "../templates/mediaTemplate.js";
+import { PhotographerHeader } from "../templates/photographerTemplate.js";
 import { Photographer } from "../models/photographer.js";
-import { MediaTemplate } from "../templates/mediaTemplate.js";
-import { Video, Picture } from '../models/media.js'
+import { MediasFactory } from "../factories/mediaFactories.js";
+import { showLikes } from "../utils/likes.js";
+import { openCloseFormContact, validateForm } from "../utils/contactForm.js";
+import { openCloseFilterMenu, applyFilter } from "../utils/filter.js";
+import { displayLightbox } from "../utils/lightbox.js";
 
-const data = await new Api("./data/photographers.json")
+// API constructor for json 
+const photographersApi = new Api("./data/photographers.json");
 
-async function init () {      
-	const photographersSection = document.querySelector(".photograph-header");
-    const mediaSection = document.querySelector(".media_section");
+// extract id from url
+const photographerId = new URLSearchParams(window.location.search).get("id");
 
-    const listMedia = [];
-
-    const searchParams = new URLSearchParams(window.location.search);
-    const photographer_id = searchParams.get('id');  
-
-    // find photogapher and its media, based on id in query string
-    const photographerData = await data.getPhotographerById(photographer_id);
-    const mediaData = await data.getMeidasById(photographer_id);
-
-    const photographer = new Photographer(photographerData);
-    const photographerTemplate = new PhotographerTemplate(photographer);
-    photographersSection.appendChild(photographerTemplate.createPhotographerShortCard());
+export const getPhotographerById = async () => {
+    const { photographers, media } = await photographersApi.get(); // keep both dicts
+    
+    // use id to find the photographer the user clicked on 
+    const selected_photographer = photographers.find(photographer => photographer.id == photographerId);
+    // Photographer model for the corresponding id
+    const photographer = new Photographer(selected_photographer)
 
 
-	// add video/photo to the list
-	mediaData.forEach((entry) => {
-        if (entry.image) {
-        	listMedia.push(new Picture(entry))
-        } else if (entry.video) {
-        	listMedia.push(new Video(entry))
-        }
-    });	
-	
-    photographer.portfolio = listMedia;
+    // list of all Media model for the corresponding photographer
+    // also apply mediafactory to them and 
+    const medias = media
+        .map(media => new MediasFactory(media))
+        .filter(media => media.photographerId == photographerId);
+    return { photographer, medias };
+};
 
-	photographer.portfolio.forEach(media => {
-        const mediaTemplate = new MediaTemplate(photographer, media)
-        mediaSection.appendChild(mediaTemplate.createMediaCard())
-	})
+const showProfile = async () => {
+    // get relevant data of photographer and media
+    const { photographer, medias } = await getPhotographerById(); 
+    
+    // create header
+    const headerTemplate = new PhotographerHeader(photographer); 
+    headerTemplate.createHeader(); 
 
-	const likeBtns = document.querySelectorAll('input[type=checkbox]');
-	likeBtns.forEach(btn => btn.addEventListener("click", (e) => update_likes(e)));
+    // create media cards
+    const mediasTemplate = new MediaCard(photographer, medias);
+    mediasTemplate.createCard();
 
-}
+    // compute and display total likes
+    showLikes();
 
+    // contact form open/close
+    openCloseFormContact();
 
-function update_likes(e) {
-	const likedMedia = data.getMeidasByMediaId(e.target.id)
-    console.log(likedMedia)
-	const getLikes = async () => {
-		const a = await likedMedia;
-		console.log(a[0].likes);
-	}	
+    // validating form
+    validateForm();
 
-	getLikes();
+    // filter menu open/close
+    openCloseFilterMenu();
 
-	// Promise
-    // .then(({ data }) => data)
-    // .then(data => doSomethingWithData(data))// rest of script
-	// const likeBtns = document.querySelectorAll('input[type=checkbox]');
-	// const likedMedia = data.getMeidasByMediaId(likeBtns[0].id)
-	// console.log(likedMedia)
-	// likeBtns.forEach((btn) => btn.addEventListener("click", (e) => {
-	// 	if (e.target.checked) {
-	// 		var mediaLikes = data.getMeidasByMediaId(btn.id);
-	// 		console.log(mediaLikes)
-	// 	} else {
-	// 	  console.log("ppp")
-	// 	}
-	// }));
-	// 	this.$wrapperCard.querySelector('label.favorite__counter').innerHTML = this._media.likes
-	// 	this.$wrapperCard.querySelector('input.favorite__input').setAttribute('aria-label', `${this._media.likes} j'aime`)
-  
-	// 	// Rafraichie le le ContentPhotographerLink
-	// 	this._photographer.templatePhotographer.refreshPhotographerContentLink()
-	//   })
-	// console.log(bntLike)
-	};
+    // refresh media based on chosen filter
+    applyFilter(mediasTemplate)
 
-init();
-// await ();
+    // lightbox
+    displayLightbox(mediasTemplate);
+};
 
+showProfile();

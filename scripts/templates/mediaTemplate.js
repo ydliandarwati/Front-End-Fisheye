@@ -1,51 +1,47 @@
-export class MediaTemplate {
-	constructor (photographer, media) {
-	    this._photographer = photographer
-	    this._media = media
-	}
+export class MediaCard {
+    constructor(photographer, medias) {
+        this.photographer = photographer;
+        this.medias = medias;
+    };
 
-  
-    createMediaCard() {
-        const img = document.createElement('img');
-        img.setAttribute("src", this._media.path);
-		img.classList.add('media_thumbnail')
+    createCard() {
+        const mediasSection = document.querySelector(".main_content_medias");
+        const content = `
+            <section class="gallery">
+                ${this.medias.map(media => {
+            const mediaContent = media.image
+                ? ` <img class="gallery_thumbnail" src="./assets/FishEye_Photos/${this.photographer.id}/${media.image}" alt="${media.alt}">`
+                : ` <video class="gallery_thumbnail" aria-label="${media.alt}">
+                        <source src="./assets/FishEye_Photos/${this.photographer.id}/${media.video}" type="video/mp4">
+                    </video>`;
+            return `
+                    <article class="media_card">                           
+                        <a href="#" data-media=${media.id} role="link" aria-label="View media large">
+                            <figure>${mediaContent}</figure>
+                        </a>
+                        <figcaption>
+                            <h2>${media.title}</h2>
+                                <div role="group" aria-label="Like button and number of likes">
+                                    <span class="nbLike">${media.likes}</span> 
+                                    <button class="btn_like" type="button" aria-label="Like" data-id="${media.id}">
+                                        <span class="fas fa-heart" aria-hidden="true"></span>
+                                    </button> 
+                                </div>
+                        </figcaption>
+                    </article>
+                `;
+        }).join("")}
+            </section >
+            <aside>
+                <p class="photographer_Likes">
+                    <span class="photographer_likes_count"></span>
+                    <span class="fas fa-heart" aria-hidden="true"></span>
+                </p>
+                <span>${this.photographer.price}€ / jour</span>
+            </aside>
+        `;
 
-		const card_title = document.createElement('div');
-		const content = `<div class="card_title">
-		<h2 class="media_title"> ${this._media.title}<h2>
-		<div class="media_likes">
-		<p class="media_likes_counter"> ${this._media.likes}<p>		
-		<label class="like-btn">
-		<input type="checkbox" name="button_like" id=${this._media.id}>
-		<i class="fa-regular fa-heart like-unselected"></i>
-		<i class="fa-solid fa-heart like-selected "></i>
-		</label>
-		</div>
-		</div>
-		`;
-		card_title.innerHTML = content;
-
-        const article = document.createElement('article');
-		article.classList.add('media_card')
-        article.appendChild(img);
-        article.appendChild(card_title);
-        return article;
-    }
-
-
-    // private
-    // _stateLikesListener () {
-    //   this.$wrapperCard.querySelector('input[type="checkbox"]').addEventListener('click', (e) => {
-    //     if (e.target.checked) {
-    //       this._media.likes += 1
-    //     } else {
-    //       this._media.likes -= 1
-    //     }
-    //     this.$wrapperCard.querySelector('label.favorite__counter').innerHTML = this._media.likes
-    //     this.$wrapperCard.querySelector('input.favorite__input').setAttribute('aria-label', `${this._media.likes} j'aime`)
-  
-    //     // Rafraichie le le ContentPhotographerLink
-    //     this._photographer.templatePhotographer.refreshPhotographerContentLink()
-    //   })
-    // }
-  }
+        mediasSection.innerHTML = content;
+        return mediasSection;
+    };
+};
