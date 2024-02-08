@@ -19,7 +19,7 @@ export class Image extends Media {
     }
 };
 
-// child video which adds video to parent
+// child video which adds video to the parent
 export class Video extends Media {
     constructor(data) {
         super(data);
