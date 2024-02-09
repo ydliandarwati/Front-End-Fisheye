@@ -1,9 +1,10 @@
-/* MAIN */
+/* CSS file for styling the elements of photographer profilepage (photographer.html)  */
+
 main{
     padding: 0 120px;
 }
 
-.main_about{
+.main_header{
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -132,7 +133,7 @@ main{
 }
 
 /* MEDIA FILTER */
-.main_content_filter {
+.main_filter {
     display: flex;
     align-items: center;
     height: 50px;
@@ -459,7 +460,7 @@ aside{
     main{
         padding: 0 20px;
     }
-    .main_about{
+    .main_header{
         justify-content: space-around;
         padding: 20px;
     }
@@ -537,7 +538,7 @@ aside{
     .page{
         padding: 10px;
     }
-    .main_about{
+    .main_header{
         justify-content: space-between;
         padding: 10px;
     }

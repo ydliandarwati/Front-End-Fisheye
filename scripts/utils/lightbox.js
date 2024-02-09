@@ -1,6 +1,6 @@
 export const displayLightbox = medias => {
 
-    const lightboxWrapper = document.querySelector('.lightbox_wrapper');
+    const lightboxWrapper = document.querySelector('.lightbox_container');
     const closeBtn = document.querySelector('.btn_close_lightbox');
     const prevBtn = document.querySelector('.btn_previous');
     const nextBtn = document.querySelector('.btn_next');

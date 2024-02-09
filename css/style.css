@@ -1,3 +1,28 @@
+@import url("photographer.css");
+@import url("index.css");
+
+*, ::before, ::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root{
+    --color-primary: #901C1C;
+    --color-secondary: #DB8876;
+    --color-tertiary: #D3573C;
+    --color-dark: #000;
+    --color-dark-medium: #757575;
+    --color-light: #fff;
+    --color-light-medium: #FAFAFA;
+    --color-label: #312E2E;
+}
+
+html{
+    font-size: 62.5%;
+    font-family: "DM Sans", sans-serif;
+}
+
 .page{
     margin: 0 auto;
     padding: 30px 20px 20px;
@@ -43,10 +68,37 @@ header a:hover::before{
     width: clamp(13rem, 15vw, 20rem);
 }
 
+
 h1 {
     color: var(--color-primary);
     font-size: clamp(2rem, 3vw, 3.2rem);
     font-weight: 100;
+}
+
+button,
+a{
+    cursor: pointer;
+    outline: none;
+    border: none;
+}
+
+button{
+    background-color: transparent;
+}
+
+a{
+    text-decoration: none;
+    outline: none;
+}
+
+img,
+video{
+    object-fit: cover;
+    object-position: center;
+}
+
+li{
+    list-style-type: none;
 }
 
 .photographer_name{

@@ -1,37 +1,26 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+    <link href="./css/style.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <title>Fisheye - Photographe</title>
-    <!-- CSS -->
-    <link href="./css/reset.css" rel="stylesheet" type="text/css" />
-    <link href="./css/style.css" rel="stylesheet" type="text/css" />
-    <link href="./css/photographer.css" rel="stylesheet" type="text/css" />
-    <!-- Favicon -->
     <link rel="icon" type="image/png" href="assets/favicon.png">
-
-    <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="theme-color" content="#ffffff">
-    <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet" />
-    <!-- CDN Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Fisheye - Photographe</title>
 </head>
 <body>
     <div class="page">
-        <!-- Header -->
         <header>
             <a href="./index.html">
-                <img src="assets/images/logo.png" class="logo" alt="Fisheye Home page" aria-label="Return to home page"/>
+                <img src="assets/images/logo.png" class="logo" alt="Fisheye Home page" aria-label="Return to homepage"/>
             </a>
         </header>
-        <!-- Main -->
+        
         <main>
-            <section class="main_about"></section>
+            <section class="main_header"></section>
             <section class="main_content">
-                <div class="main_content_filter">
+                <div class="main_filter">
                     <h2>Trier par</h2>
                     <div class="filter_section" >
                         <div class="dropdown">
@@ -41,30 +30,31 @@
                             </button>
 
                             <ul class="dropdown_content" aria-hidden="true">
-                                <li role="option">
+                                <li role="sort option">
                                     <button type="button" tabindex="-1" aria-label="Sort by title">Titre</button>
                                 </li>
-                                <li role="option">
+                                <li role="sort option">
                                     <button type="button" tabindex="-1" aria-label="Sort by popularity">Popularité</button>
                                 </li>
-                                <li role="option">
+                                <li role="sort option">
                                     <button type="button" tabindex="-1" aria-label="Sort by date">Date</button>
                                 </li>
                             </ul>
                         </div>
                     </div>
                 </div>
-                <div class="main_content_medias"></div>
+                <div class="main_media"></div>
             </section>
         </main>
-        <!-- Modal Form -->
+
+        <!-- contact form -->
         <div class="modal_wrapper wrapper" aria-modal="true" role="dialog">
             <div class="modal_form" aria-describedby="formTitle">
                 <div class="modal_form_title">
                     <h2 id="formTitle">Contactez-moi <button  class="btn_close" type="button" aria-label="Close contact form"></button></h2>
                     <p class="modal_form_name"></p>
                 </div> 
-                <form novalidate>
+                <form>
                     <div class="form_content">
                         <label id="firstname-label" for="firstname">Prénom <span aria-hidden="true">*</span></label>
                         <input class="formField" aria-labelledby="firstname-label" type="text" id="firstname" name="firstname" maxlength="15" data-error="Minimum 3 caractères, maximum 15 caractères. Les chiffres et caractères spéciaux différents de - ne sont pas autorisés." required/>
@@ -89,7 +79,8 @@
                 </form>
             </div>
         </div>
-        <!-- Lightbox -->
+
+        <!-- lightbox -->
         <div class="lightbox_wrapper wrapper" aria-modal="true" role="dialog">
             <div class="lightbox" aria-label="Media closeup view">
                 <button class="btn_close_lightbox btn_close" aria-label="Close dialog"></button>

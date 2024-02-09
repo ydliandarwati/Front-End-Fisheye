@@ -29,7 +29,7 @@ export class PhotographerHeader {
     };
 
     createHeader() {
-        const profileHeader = document.querySelector(".main_about");
+        const profileHeader = document.querySelector(".main_header");
         const formName = document.querySelector(".modal_form_name");
         formName.textContent = this.photographer.name;
         const metaDescription = document.querySelector('meta[name="description"]');

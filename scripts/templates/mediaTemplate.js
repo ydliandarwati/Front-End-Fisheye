@@ -5,7 +5,7 @@ export class MediaCard {
     };
 
     createCard() {
-        const mediasSection = document.querySelector(".main_content_medias");
+        const mediasSection = document.querySelector(".main_media");
         const content = `
             <section class="gallery">
                 ${this.medias.map(media => {
