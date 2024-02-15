@@ -30,7 +30,7 @@ export const applyFilter = (mediasTemplate) => {
 	let filterAlreadySelected = allFilters.find(filter => filter.textContent == currentFilter.textContent);
 	filterAlreadySelected.style.display = "none";
 
-	// even listener for each filter button, after click, currentFilter is changed to new filter
+	// eventlistener for each filter button, after click, currentFilter is changed to new filter
 	// then apply filter
 	allFilters.forEach(filter => {
 		filter.addEventListener("click", () => {
