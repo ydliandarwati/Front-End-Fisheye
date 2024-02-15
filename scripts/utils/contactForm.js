@@ -60,6 +60,7 @@ export const validateForm = () => {
 		const messageProvider = input.nextElementSibling;
 		const isValid = regex.test(input.value);
 
+		// add valid/invalid state for accessibility purposes
 		if(isValid) {
 			messageProvider.innerHTML = "";
 			messageProvider.removeAttribute("role");

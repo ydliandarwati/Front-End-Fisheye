@@ -1,5 +1,4 @@
 // Photographer class containing all properties of a photographer
-
 export class Photographer {
 	constructor(data) {
 		this.name = data.name;

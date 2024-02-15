@@ -1,19 +1,19 @@
-export const displayLightbox = medias => {
+export const displayLightbox = (mediasTemplate) => {
 
 	const lightboxWrapper = document.querySelector(".lightbox_wrapper");
 	const closeBtn = document.querySelector(".btn_close_lightbox");
 	const prevBtn = document.querySelector(".btn_previous");
 	const nextBtn = document.querySelector(".btn_next");
 	const lightboxMedia = document.querySelector(".lightbox_media");
-	const mediaProvider = Array.from(document.querySelectorAll(".media_card a"));
+	const medias = Array.from(document.querySelectorAll(".media_card a"));
 
-	const photographer = medias.photographer;
-	const mediasList = medias.medias;
+	const photographer = mediasTemplate.photographer;
+	const mediasList = mediasTemplate.medias;
 	let currentIndex = 0; 
 
 
 	// even listener to show up lightbox after click
-	mediaProvider.forEach(media => {
+	medias.forEach(media => {
 		media.addEventListener("click", () => {
 			const mediaId = media.dataset.media;
 			const mediaIndex = mediasList.findIndex(media => media.id == mediaId);
@@ -26,11 +26,10 @@ export const displayLightbox = medias => {
 		
 	const lightboxTemplate = () => {
 		const currentMedia = mediasList[currentIndex];
-		
 		// create the lightbox content: image and caption
 		lightboxMedia.innerHTML = `
 		${currentMedia.image ? `
-		<img src="./assets/FishEye_Photos/${photographer.id}/${currentMedia.image}" alt="${currentMedia.alt}">` : 
+		<img src="./assets/FishEye_Photos/${photographer.id}/${currentMedia.image}" alt="${currentMedia.alt}, closeup view">` : 
 		`<video controls aria-label="${currentMedia.alt}"><source src="./assets/FishEye_Photos/${photographer.id}/${currentMedia.video}" type="video/mp4"></video>`}
 			<figcaption>${currentMedia.title}</figcaption>
 		`;

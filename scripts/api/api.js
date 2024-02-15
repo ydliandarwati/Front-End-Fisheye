@@ -3,7 +3,7 @@
 export class Api {
 	// takes the url (address) and read the json
 	constructor(url) {
-		this._url = url;
+		this._url = url;	
 	}
 
 	// fetch json data
@@ -13,3 +13,4 @@ export class Api {
 			.catch((err) => console.log("An error occured in reading the data!", err));
 	}	
 }
+

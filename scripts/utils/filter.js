@@ -58,7 +58,7 @@ export const applyFilter = (mediasTemplate) => {
 			break;
 		}
 		
-		// not mediasTemplate is updated (because of filter)
+		// now mediasTemplate is updated (because of filter)
 		// so, create card for them, show lightbox and likes
 		mediasTemplate.createCard();
 		displayLightbox(mediasTemplate);
