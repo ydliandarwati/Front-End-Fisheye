@@ -1,10 +1,10 @@
 import { showLikes } from "../utils/likes.js";
-import { displayLightbox } from "../utils/lightbox.js";
+import { showLightbox } from "../utils/lightbox.js";
 
 // to show/close drop-down filter menu
-export const openCloseFilterMenu = () => {
+export const showFilter = () => {
 	const filterMenu = document.querySelector(".dropdown_content");
-	const filterMenuButton = document.querySelector(".btn_drop");
+	const filterMenuButton = document.querySelector(".drop_btn");
 	const filterButtons = document.querySelectorAll(".dropdown_content button");
 
 	filterMenuButton.addEventListener("click", () => {
@@ -61,7 +61,7 @@ export const applyFilter = (mediasTemplate) => {
 		// now mediasTemplate is updated (because of filter)
 		// so, create card for them, show lightbox and likes
 		mediasTemplate.createCard();
-		displayLightbox(mediasTemplate);
+		showLightbox(mediasTemplate);
 		showLikes();
  
 		const mediaElements = document.querySelectorAll(".media_card");

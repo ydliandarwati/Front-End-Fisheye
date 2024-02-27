@@ -4,9 +4,9 @@ import { PhotographerHeader } from "../templates/photographerTemplate.js";
 import { Photographer } from "../models/photographer.js";
 import { MediasFactory } from "../factories/mediaFactories.js";
 import { showLikes } from "../utils/likes.js";
-import { openCloseFormContact, validateForm } from "../utils/contactForm.js";
-import { openCloseFilterMenu, applyFilter } from "../utils/filter.js";
-import { displayLightbox } from "../utils/lightbox.js";
+import { showContactForm, validateForm } from "../utils/contactForm.js";
+import { showFilter, applyFilter } from "../utils/filter.js";
+import { showLightbox } from "../utils/lightbox.js";
 
 // API constructor for json 
 const photographersApi = new Api("./data/photographers.json");
@@ -47,19 +47,19 @@ const showProfile = async () => {
 	showLikes();
 
 	// contact form open/close
-	openCloseFormContact();
+	showContactForm();
 
 	// validating form
 	validateForm();
 
 	// filter menu open/close
-	openCloseFilterMenu();
+	showFilter();
 
 	// refresh media based on chosen filter
 	applyFilter(mediasTemplate);
 
 	// lightbox
-	displayLightbox(mediasTemplate);
+	showLightbox(mediasTemplate);
 };
 
 showProfile();

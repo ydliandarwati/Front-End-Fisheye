@@ -59,7 +59,6 @@ article a:focus:not(:hover){
     color: var(--color-dark-medium);
 }
 
-/* RESPONSIVE */
 @media screen and (max-width: 1040px) {
     header{
         flex-direction: column;

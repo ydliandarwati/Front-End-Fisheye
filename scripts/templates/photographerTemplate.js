@@ -8,7 +8,7 @@ export class PhotographerCard {
 	createCard() {
 		const article = document.createElement( "article" );
 		const content = `
-			<a href="photographer.html?id=${this.photographer.id}" role="link" aria-label="Voir le profil de ${this.photographer.name}">
+			<a href="photographer.html?id=${this.photographer.id}" role="link" aria-label="See the profile of ${this.photographer.name}">
 				<img class="photographer_thumbnail" src="./assets/photographers/${this.photographer.portrait}" alt="${this.photographer.name}">
 				<h2 class="photographer_name">${this.photographer.name}</h2>
 			</a>

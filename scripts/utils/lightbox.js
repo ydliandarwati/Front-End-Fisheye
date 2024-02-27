@@ -1,9 +1,9 @@
-export const displayLightbox = (mediasTemplate) => {
+export const showLightbox = (mediasTemplate) => {
 
-	const lightboxWrapper = document.querySelector(".lightbox_wrapper");
-	const closeBtn = document.querySelector(".btn_close_lightbox");
-	const prevBtn = document.querySelector(".btn_previous");
-	const nextBtn = document.querySelector(".btn_next");
+	const lightboxContainer = document.querySelector(".lightbox_container");
+	const closeBtn = document.querySelector(".close_btn_lightbox");
+	const prevBtn = document.querySelector(".prev_btn");
+	const nextBtn = document.querySelector(".next_btn");
 	const lightboxMedia = document.querySelector(".lightbox_media");
 	const medias = Array.from(document.querySelectorAll(".media_card a"));
 
@@ -18,7 +18,7 @@ export const displayLightbox = (mediasTemplate) => {
 			const mediaId = media.dataset.media;
 			const mediaIndex = mediasList.findIndex(media => media.id == mediaId);
 			currentIndex = mediaIndex;
-			lightboxWrapper.style.display = "flex"; // display lightbox
+			lightboxContainer.style.display = "flex"; // display lightbox
 			closeBtn.focus(); // focus on close button X
 			lightboxTemplate();
 		});
@@ -36,7 +36,7 @@ export const displayLightbox = (mediasTemplate) => {
 	};
 	
 	const closeLightbox = () => {
-		lightboxWrapper.style.display = "none";
+		lightboxContainer.style.display = "none";
 		lightboxMedia.innerHTML = "";
 	};
 

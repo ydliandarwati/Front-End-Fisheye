@@ -64,14 +64,14 @@ main{
     font-size: clamp(2rem, 3vw, 4rem);
 }
 
-.btn_close:hover::before{
+.close_btn:hover::before{
     color: var(--color-primary);
 }
-.btn_close:focus:not(:hover)::before{
+.close_btn:focus:not(:hover)::before{
     outline: 2px solid var(--color-primary);
 }
 
-.btn_close::before{
+.close_btn::before{
     content: "\f00d";
     font-family: "Font Awesome 5 Free";
     padding: 5px;
@@ -123,12 +123,12 @@ main{
     outline: 2px solid var(--color-primary);
 } 
 
-.btn_submit{
+.submit_btn{
     max-width: 150px;
 }
 
-.btn_submit:hover,
-.btn_submit:focus {
+.submit_btn:hover,
+.submit_btn:focus {
     outline: 2px solid var(--color-light);
 }
 
@@ -183,7 +183,7 @@ h2{
     background-color: var(--color-light);
 }
 
-.btn_drop,
+.drop_btn,
 .dropdown_content li button{
     height: 50px;
     padding: 15px;
@@ -191,7 +191,7 @@ h2{
     color: var(--color-light);
 }
 
-.btn_drop {
+.drop_btn {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -206,8 +206,8 @@ h2{
 
 .dropdown_content li button:hover,
 .dropdown_content li button:focus,
-.btn_drop:hover,
-.btn_drop:focus{
+.drop_btn:hover,
+.drop_btn:focus{
     background-color: var(--color-secondary);
     color: var(--color-black);
 }
@@ -296,14 +296,14 @@ h2{
     font-size: clamp(1.8rem, 2vw, 2.2rem);
 }
 
-.btn_like{
+.like_btn{
     border-radius: 5px;
     padding: 0 1px;
     font-size: clamp(1.8rem, 2vw, 2.2rem);
     color: var(--color-secondary);
 }
 
-.btn_like:focus-visible:not(:hover){
+.like_btn:focus-visible:not(:hover){
     outline: 2px solid var(--color-secondary);
 }
 
@@ -373,20 +373,20 @@ aside{
     outline: 2px solid var(--color-primary);
 }
 
-.btn_close_lightbox{
+.close_btn_lightbox{
     z-index: 100;
     position: absolute;
     top: 25px;
     right: 5px; 
 }
 
-.btn_close_lightbox::before{
+.close_btn_lightbox::before{
     font-size: clamp(3rem, 6vw, 5rem);
     color: var(--color-primary);
 }
 
-.btn_previous,
-.btn_next{
+.prev_btn,
+.next_btn{
     z-index: 100;
     position: absolute;
     top: 50%;
@@ -395,38 +395,38 @@ aside{
     padding: 5px;
 }
 
-.btn_next{
+.next_btn{
     right: 10px;
 }
 
-.btn_previous{
+.prev_btn{
     left: 10px;
 }
 
-.btn_next::before,
-.btn_previous::before{
+.next_btn::before,
+.prev_btn::before{
     font-family:  "Font Awesome 5 Free";
     font-weight: 900;   
     font-size: clamp(3rem, 6vw, 5rem);
     color: var(--color-primary);
 }
 
-.btn_next::before{
+.next_btn::before{
     content: "\f054";
 }
 
-.btn_previous::before{
+.prev_btn::before{
     content: "\f053";
 }
 
-.btn_previous:focus-visible:not(:hover),
-.btn_next:focus-visible:not(:hover){
+.prev_btn:focus-visible:not(:hover),
+.next_btn:focus-visible:not(:hover){
     outline: 2px solid var(--color-primary);
 }
 
-.btn_previous:hover::before,   
-.btn_next:hover::before,
-.btn_close_lightbox:hover::before{
+.prev_btn:hover::before,   
+.next_btn:hover::before,
+.close_btn_lightbox:hover::before{
     color: var(--color-secondary);
 }
 
@@ -438,9 +438,9 @@ aside{
     outline: 2px solid green;
 }
 
-.btn_next.active::before,
-.btn_previous.active::before,
-.btn_close_lightbox.active::before{
+.next_btn.active::before,
+.prev_btn.active::before,
+.close_btn_lightbox.active::before{
     color: var(--color-secondary);
 }
 
@@ -497,7 +497,7 @@ aside{
         padding: 10px 10px 0;
     }
 
-    .btn_close_lightbox{
+    .close_btn_lightbox{
         top: 10px;
         right: 10px;
     }
@@ -511,9 +511,9 @@ aside{
         height: calc(100% - 30px);
     }
 
-    .btn_next::before,
-    .btn_previous::before,
-    .btn_close_lightbox::before{
+    .next_btn::before,
+    .prev_btn::before,
+    .close_btn_lightbox::before{
         color: var(--color-light);
         -webkit-text-stroke: .5px #000; 
     }

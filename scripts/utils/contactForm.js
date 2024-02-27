@@ -1,11 +1,8 @@
-/* hint for eslint about global variables */
-/* global regexName, regexEmail, regexMessage */
-
-//to open and close button x form 
-export const openCloseFormContact = () => {
+// to open and close button x form 
+export const showContactForm = () => {
 	const contactBtn = document.querySelector(".contact_btn");
-	const contactForm = document.querySelector(".modal_wrapper");
-	const closeBtn = document.querySelector(".btn_close");
+	const contactForm = document.querySelector(".modal_container");
+	const closeBtn = document.querySelector(".close_btn");
 
 	// show contact form when user click on contact button
 	contactBtn.addEventListener("click", () => {
@@ -49,7 +46,7 @@ export const validateForm = () => {
 				message: message.value,
 			};
 			console.log(JSON.stringify(formData));
-			document.querySelector(".modal_wrapper").style.display = "none";
+			document.querySelector(".modal_container").style.display = "none";
 			document.querySelectorAll(".formField").forEach(input => input.classList.remove("valid"));
 			form.reset();
 		}
@@ -78,10 +75,10 @@ export const validateForm = () => {
 	};
 
 	const checkForm = () => {
-		const firstnameIsValid = checkValidity(firstName, regexName);
-		const lastnameIsValid  = checkValidity(lastName, regexName);
-		const emailIsValid     = checkValidity(email, regexEmail);
-		const messageIsValid   = checkValidity(message, regexMessage);
+		const firstnameIsValid = checkValidity(firstName, nameRegExp);
+		const lastnameIsValid  = checkValidity(lastName, nameRegExp);
+		const emailIsValid     = checkValidity(email, emailRegExp);
+		const messageIsValid   = checkValidity(message, msgRegExp);
 		return firstnameIsValid && lastnameIsValid && emailIsValid && messageIsValid;
 	};
 };

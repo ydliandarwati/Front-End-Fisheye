@@ -5,7 +5,7 @@ export const showLikes = async () => {
 	const { medias } = await getPhotographerById();
 
 	// grab all like buttons
-	const likeBtns = document.querySelectorAll(".btn_like");
+	const likeBtns = document.querySelectorAll(".like_btn");
 
 	// grab like counter at the bottom of the page
 	const likesElement = document.querySelector(".photographer_likes_count");

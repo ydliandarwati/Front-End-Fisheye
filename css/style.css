@@ -1,3 +1,4 @@
+/* main css file */
 @import url("photographer.css");
 @import url("index.css");
 
@@ -120,7 +121,6 @@ li{
     border-radius: 50%;
 }
 
-/* UTILITY CLASS */
 .btn{
     font-size: clamp(1.8rem, 2vw, 2rem);
     font-weight: bold;
@@ -131,7 +131,7 @@ li{
     border-radius: 5px;
 }
 
-.wrapper{
+.container{
     z-index: 10;
     display: none;
     justify-content: center;
@@ -144,7 +144,6 @@ li{
     background-color: rgba(0,0,0,0.5); 
 }
 
-/* RESPONSIVE */
  @media screen and (max-width: 445px) {
     .page{
         padding: 10px;

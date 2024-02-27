@@ -9,7 +9,7 @@ const photographersSection = document.querySelector(".photographer_section");
 // API constructor to read the json file 
 const photographersApi = new Api("./data/photographers.json");
 
-const displayPhotographers = async () => {
+const showPhotographers = async () => {
 	const photographersData = await photographersApi.get(); // get both dicts
 	const photographers = photographersData.photographers; // photographer dict
 
@@ -24,4 +24,4 @@ const displayPhotographers = async () => {
 		});
 };
 
-displayPhotographers();
+showPhotographers();

@@ -18,14 +18,14 @@ export class MediaCard {
 	
 		// return value of map
 		return `<article class="media_card">                           
-						<a href="#" data-media=${media.id} role="link" aria-label="View media large">
+						<a href="#" data-media=${media.id} role="link" aria-label="View media">
 							<figure>${mediaContent}</figure>
 						</a>
 						<figcaption>
 							<h2>${media.title}</h2>
 								<div role="group" aria-label="Like button and number of likes">
-									<span class="nbLike">${media.likes}</span> 
-									<button class="btn_like" type="button" aria-label="Like" data-id="${media.id}">
+									<span>${media.likes}</span> 
+									<button class="like_btn" type="button" aria-label="Like" data-id="${media.id}">
 										<span class="fas fa-heart" aria-hidden="true"></span>
 									</button> 
 								</div>
