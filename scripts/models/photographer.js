@@ -8,5 +8,6 @@ export class Photographer {
 		this.tagline = data.tagline;
 		this.price = data.price;
 		this.portrait = data.portrait;
+		this.alt = data.name;
 	}
 }

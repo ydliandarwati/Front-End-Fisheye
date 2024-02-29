@@ -10,13 +10,13 @@ export const showFilter = () => {
 	filterMenuButton.addEventListener("click", () => {
 		const isExpanded = filterMenuButton.getAttribute("aria-expanded") === "true" || false;
 		filterMenuButton.setAttribute("aria-expanded", !isExpanded);
-		filterMenu.classList.toggle("curtain_effect");
+		filterMenu.classList.toggle("dropMenu_effect");
 		document.querySelector(".fa-chevron-up").classList.toggle("rotate");
 
-		const newAriaHiddenValue = filterMenu.classList.contains("curtain_effect") ? "false" : "true";
-		filterMenu.setAttribute("aria-hidden", newAriaHiddenValue);
+		const ariaValue = filterMenu.classList.contains("dropMenu_effect") ? "false" : "true";
+		filterMenu.setAttribute("aria-hidden", ariaValue);
 
-		const newTabIndexValue = filterMenu.classList.contains("curtain_effect") ? "0" : "-1";
+		const newTabIndexValue = filterMenu.classList.contains("dropMenu_effect") ? "0" : "-1";
 		filterButtons.forEach(button => button.setAttribute("tabindex", newTabIndexValue));
 	});
 };
@@ -67,7 +67,7 @@ export const applyFilter = (mediasTemplate) => {
 		const mediaElements = document.querySelectorAll(".media_card");
 		mediaElements.forEach((media, index) => {
 			setTimeout(() => {
-				media.classList.add("animeCard");
+				media.classList.add("animationCard");
 			}, 100 * index);
 		});   
 	};

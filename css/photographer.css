@@ -212,11 +212,10 @@ h2{
     color: var(--color-black);
 }
 
-.curtain_effect {
+.dropMenu_effect {
     max-height: 200px;
 }
 
-/* MEDIA GALLERY */
 .main_content{
     display: flex;
     flex-direction: column;
@@ -237,7 +236,7 @@ h2{
     gap: 10px;
 }
 
-.animeCard{
+.animationCard{
     animation: fade .2s ease-in-out;
 }
 

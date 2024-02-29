@@ -9,7 +9,7 @@ export class PhotographerCard {
 		const article = document.createElement( "article" );
 		const content = `
 			<a href="photographer.html?id=${this.photographer.id}" role="link" aria-label="See the profile of ${this.photographer.name}">
-				<img class="photographer_thumbnail" src="./assets/photographers/${this.photographer.portrait}" alt="${this.photographer.name}">
+				<img class="photographer_thumbnail" src="./assets/photographers/${this.photographer.portrait}" alt="${this.photographer.alt}">
 				<h2 class="photographer_name">${this.photographer.name}</h2>
 			</a>
 			<p class="photographer_location">${this.photographer.city}, ${this.photographer.country}</p>
@@ -31,11 +31,10 @@ export class PhotographerHeader {
 	createHeader() {
 		const profileHeader = document.querySelector(".main_header");
 		const formName = document.querySelector(".modal_form_name");
+
+		//to change the text content when we click "contactez-moi" into different name of each photographer
 		formName.textContent = this.photographer.name;
-		const metaDescription = document.querySelector("meta[name='description']");
-		if (metaDescription) {
-			metaDescription.content = `Découvrez ${this.photographer.name}, photographe professionnel basé à ${this.photographer.city}, ${this.photographer.country} offrant ses services à partir de ${this.photographer.price} € / jour.`;
-		}
+
 		const content = `
 			<div class="photographer_profile__infos">
 				<h1 class="photographer_name">${this.photographer.name}</h1>
@@ -43,7 +42,7 @@ export class PhotographerHeader {
 				<p class="photographer_tagline">${this.photographer.tagline}</p>    
 			</div>
 			<button class="btn contact_btn" type="button" aria-label="Open contact form">Contactez-moi</button>
-			<img class="photographer_thumbnail" src="assets/photographers/${this.photographer.portrait}" alt="${this.photographer.name}">
+			<img class="photographer_thumbnail" src="assets/photographers/${this.photographer.portrait}" alt="${this.photographer.alt}">
 		`;
 		profileHeader.innerHTML = content;
 		return profileHeader;

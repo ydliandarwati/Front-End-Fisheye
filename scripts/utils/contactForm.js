@@ -37,15 +37,7 @@ export const validateForm = () => {
 	form.addEventListener("submit", e => {
 		e.preventDefault();
 		if (checkForm()) {
-			// if form is valid extract its data --> converts a JavaScript value to a JSON string
-			// then, close and reset the form
-			const formData = {
-				firstName: firstName.value,
-				lastName: lastName.value,
-				email: email.value,
-				message: message.value,
-			};
-			console.log(JSON.stringify(formData));
+			// if form is valid extract its data -->  close and reset the form
 			document.querySelector(".modal_container").style.display = "none";
 			document.querySelectorAll(".formField").forEach(input => input.classList.remove("valid"));
 			form.reset();
@@ -54,22 +46,22 @@ export const validateForm = () => {
 
 	const checkValidity = (input, regex) => {
 		const errorMessage = input.dataset.error;
-		const messageProvider = input.nextElementSibling;
+		const msgErrorElement = input.nextElementSibling;
 		const isValid = regex.test(input.value);
 
 		// add valid/invalid state for accessibility purposes
 		if(isValid) {
-			messageProvider.innerHTML = "";
-			messageProvider.removeAttribute("role");
+			msgErrorElement.innerHTML = "";
+			msgErrorElement.removeAttribute("role");
 			input.removeAttribute("aria-invalid");
 		} else {
-			messageProvider.innerHTML = errorMessage;
-			messageProvider.setAttribute("role", "alert");
+			msgErrorElement.innerHTML = errorMessage;
+			msgErrorElement.setAttribute("role", "alert");
 			input.setAttribute("aria-invalid", "true");
 		}
 
-		input.classList.toggle("invalid", !isValid);
-		input.classList.toggle("valid", isValid);
+		input.classList.toggle("invalid", !isValid); // if valid, invalid is removed
+		input.classList.toggle("valid", isValid); // if invalid, valid is removed
 
 		return isValid;
 	};
