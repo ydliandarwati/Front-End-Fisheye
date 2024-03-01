@@ -38,6 +38,14 @@ export const validateForm = () => {
 		e.preventDefault();
 		if (checkForm()) {
 			// if form is valid extract its data -->  close and reset the form
+			const formData = {
+				firstName: firstName.value,
+				lastName: lastName.value,
+				email: email.value,
+				message: message.value,
+			};
+
+			console.log(JSON.stringify(formData));
 			document.querySelector(".modal_container").style.display = "none";
 			document.querySelectorAll(".formField").forEach(input => input.classList.remove("valid"));
 			form.reset();
